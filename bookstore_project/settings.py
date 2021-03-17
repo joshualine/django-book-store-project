@@ -7,7 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
-# SECRET_KEY = '&6+z9yt+c5suyodn0$q)10mm3h2s9fu%3wfc%*c5a#)k%duo&c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -24,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
 ]
@@ -72,7 +71,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'postgres',
 #         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
+#         'PASSWORD': '',
 #         'HOST': 'db',
 #         'PORT': 5432,
 #     }
@@ -106,3 +105,13 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+LOGIN_REDIRECT_URL ="home"
+LOGOUT_REDIRECT_URL = "home"
